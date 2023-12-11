@@ -13,31 +13,31 @@ import com.letsplay.backend.repository.CidadeRepository;
 public class CidadeService {
 
     @Autowired
-    private CidadeRepository cidadeRespository;
+    private CidadeRepository cidadeRepository;
 
 
     public List<Cidade> buscarTodos(){
-        return cidadeRespository.findAll();
+        return cidadeRepository.findAll();
     }
 
     public Cidade inserir(Cidade cidade){
         cidade.setDataCriacao(new Date());
-        Cidade cidadeNovo = cidadeRespository.saveAndFlush(cidade);
+        Cidade cidadeNovo = cidadeRepository.saveAndFlush(cidade);
         return cidadeNovo;
     }
 
     public Cidade alterar(Cidade cidade){
         cidade.setDataAtualizacao(new Date());
-        return cidadeRespository.saveAndFlush(cidade);
+        return cidadeRepository.saveAndFlush(cidade);
     }
 
     public void excluir(Long id){
-        Cidade Cidade = cidadeRespository.findById(id).get();
-        cidadeRespository.delete(Cidade);
+        Cidade Cidade = cidadeRepository.findById(id).get();
+        cidadeRepository.delete(Cidade);
     }
 
     public Cidade buscarPorId(Long id) {
-        return cidadeRespository.findById(id).get();
+        return cidadeRepository.findById(id).get();
     }
 
 }
