@@ -2,10 +2,8 @@ package com.letsplay.backend.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,42 +13,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.letsplay.backend.entity.Estado;
-import com.letsplay.backend.service.EstadoService;
+import com.letsplay.backend.entity.Distribuidora;
+
+import com.letsplay.backend.service.DistribuidoraService;
 
 @RestController
-@RequestMapping("/api/estado")
-
-public class EstadoController {
+@RequestMapping("/api/distribuidora")
+public class DistribuidoraController {
     
     @Autowired
-    private EstadoService estadoService;
-
+    private DistribuidoraService distribuidoraService;
+    
     @GetMapping("/")
-    public List<Estado> buscarTodos(){
-       return estadoService.buscarTodos();
+    private List<Distribuidora> buscarTodos(){
+        return distribuidoraService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado estado){
-        return estadoService.inserir(estado);
-    }
+    private Distribuidora inserir(@RequestBody Distribuidora distribuidora){
+        return distribuidoraService.inserir(distribuidora);
+    }    
 
     @PutMapping("/")
-    public Estado alterar(@RequestBody Estado estado){
-        return estadoService.alterar(estado);
+    public Distribuidora alterar(@RequestBody Distribuidora distribuidora){
+        return distribuidoraService.alterar(distribuidora);
     }
 
     @DeleteMapping("/{id}")   
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-        estadoService.excluir(id);
+        distribuidoraService.excluir(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")   
-    public ResponseEntity<Estado> buscarPorId(@PathVariable("id") Long id){
+    public ResponseEntity<Distribuidora> buscarPorId(@PathVariable("id") Long id){
         
-        return ResponseEntity.ok(estadoService.buscarPorId(id));
+        return ResponseEntity.ok(distribuidoraService.buscarPorId(id));
     }
-
 }
